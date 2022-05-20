@@ -36,7 +36,7 @@ ENDDO
  	lnLoopCount = 0
  	DO WHILE  calitem >0 AND lnLoopcount <=10
  		lccommand = "select COUNT(itemcode) as itemcount from processstock where itemcode in (select itemcode from bcstkissuesub where docno = ' "+lcdocno+"')"
- 		MESSAGEBOX(lccommand)
+ 		*MESSAGEBOX(lccommand)
  		=SQLEXEC(dbconn,lccommand,'countprocessstock')
  		SELECT countprocessstock
  		calitem = countprocessstock.itemcount

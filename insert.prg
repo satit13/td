@@ -159,7 +159,7 @@ PARAMETERS lcdocno
 
 
 	 lccommand = "select a.DocNo,a.DocDate,a.ItemCode,a.WHCode,a.ShelfCode,a.Qty,a.UnitCode,a.SUMOFCOST,a.Personcode,"
-	 lccommand = lccommand + "b.Name1 as itemname,c.Name as personname,e.MyDescription,d.Name as projectname ,f.name as unitname "
+	 lccommand = lccommand + "b.Name1 as itemname,c.Name as personname,e.MyDescription,d.Name as projectname ,f.name as unitname,A.PROJECTCODE "
 	 lccommand = lccommand + "from BCStkIssuesub a left join bcitem b on a.ItemCode=b.Code "
 	 lccommand = lccommand + "left join BCSale c on a.Personcode=c.code "
 	 lccommand = lccommand + "left join BCProject d on a.ProjectCode=d.Code "
