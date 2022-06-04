@@ -1,50 +1,50 @@
 
 Procedure trf_bcstkissue
-Select bcstkissue
-result=SQLEXEC(dbconn,"SET IDENTITY_INSERT "+Alias()+" OFF")
-Go Top
-Do While !Eof()
-	Wait Window Alltrim(Str(Recno())) Nowa
-	Do Insertdata
-	Skip
-Enddo
+	Select bcstkissue
+	result=SQLEXEC(dbconn,"SET IDENTITY_INSERT "+Alias()+" OFF")
+	Go Top
+	Do While !Eof()
+		Wait Window Alltrim(Str(Recno())) Nowa
+		Do Insertdata
+		Skip
+	Enddo
 
 Endproc
 *********************************
 Procedure trf_bcstkissuesub
-* run fix itemname data for ' in name of transaction Replace with ''
+	* run fix itemname data for ' in name of transaction Replace with ''
 
-Select bcstkissuesub
-result=SQLEXEC(dbconn,"SET IDENTITY_INSERT "+Alias()+" OFF ")
-Go Top
-lcdocno = ALLTRIM(bcstkissuesub.docno)
-Do While !Eof()
-	Wait Window Alltrim(Str(Recno())) Nowa
-	Do Insertdata
-	Skip
-ENDDO
+	Select bcstkissuesub
+	result=SQLEXEC(dbconn,"SET IDENTITY_INSERT "+Alias()+" OFF ")
+	Go Top
+	lcdocno = ALLTRIM(bcstkissuesub.docno)
+	Do While !Eof()
+		Wait Window Alltrim(Str(Recno())) Nowa
+		Do Insertdata
+		Skip
+	ENDDO
 
 *** Calculate stock amount ***
  
- lccommand = "insert into processstock (itemcode,processflag,flowstatus,processtype,processcase) "
- lccommand = lccommand + " select distinct itemcode , 1,0,0,0 from bcstkissuesub where docno ='"+lcdocno+"'"
- result = SQLEXEC(dbconn,lccommand)
- IF result <0 	
- 	DO ErrHand
- ELSE 
- 	calitem = 1 
- 	lnLoopCount = 0
- 	DO WHILE  calitem >0 AND lnLoopcount <=10
- 		lccommand = "select COUNT(itemcode) as itemcount from processstock where itemcode in (select itemcode from bcstkissuesub where docno = ' "+lcdocno+"')"
- 		*MESSAGEBOX(lccommand)
- 		=SQLEXEC(dbconn,lccommand,'countprocessstock')
- 		SELECT countprocessstock
- 		calitem = countprocessstock.itemcount
- 		WAIT WINDOW 'Check Calculate item Loop : '+ALLTRIM(STR(lnLoopcount))  TIMEOUT 0.5
- 		lnLoopCount = lnLoopCount+1 
- 	ENDDO 	
- 	DO printbc WITH lcdocno 
- ENDIF 
+	 lccommand = "insert into processstock (itemcode,processflag,flowstatus,processtype,processcase) "
+	 lccommand = lccommand + " select distinct itemcode , 1,0,0,0 from bcstkissuesub where docno ='"+lcdocno+"'"
+	 result = SQLEXEC(dbconn,lccommand)
+	 IF result <0 	
+	 	DO ErrHand
+	 ELSE 
+	 	calitem = 1 
+	 	lnLoopCount = 0
+	 	DO WHILE  calitem >0 AND lnLoopcount <=10
+	 		lccommand = "select COUNT(itemcode) as itemcount from processstock where itemcode in (select itemcode from bcstkissuesub where docno = ' "+lcdocno+"')"
+	 		*MESSAGEBOX(lccommand)
+	 		=SQLEXEC(dbconn,lccommand,'countprocessstock')
+	 		SELECT countprocessstock
+	 		calitem = countprocessstock.itemcount
+	 		WAIT WINDOW 'Check Calculate item Loop : '+ALLTRIM(STR(lnLoopcount))  TIMEOUT 0.5
+	 		lnLoopCount = lnLoopCount+1 
+	 	ENDDO 	
+	 	DO printbc WITH lcdocno 
+	 ENDIF 
 
 Endproc
 ***************************************************
@@ -184,3 +184,70 @@ PARAMETERS lcdocno
 	 ENDIF 
 
 ENDPROC 
+
+
+*****************
+
+Procedure trf_bcapinvoice
+	Select bcapinvoice
+	result=SQLEXEC(dbconn,"SET IDENTITY_INSERT "+Alias()+" OFF")
+	Go Top
+	Do While !Eof()
+		Wait Window Alltrim(Str(Recno())) Nowa
+		Do Insertdata
+		Skip
+	Enddo
+
+ENDPROC
+
+*****************
+
+Procedure trf_bcpaymoney
+	Select bcpaymoney
+	result=SQLEXEC(dbconn,"SET IDENTITY_INSERT "+Alias()+" OFF")
+	Go Top
+	Do While !Eof()
+		Wait Window Alltrim(Str(Recno())) Nowa
+		Do Insertdata
+		Skip
+	Enddo
+
+Endproc
+*********************************
+Procedure trf_bcapinvoicesub
+	* run fix itemname data for ' in name of transaction Replace with ''
+
+	Select bcapinvoicesub
+	result=SQLEXEC(dbconn,"SET IDENTITY_INSERT "+Alias()+" OFF ")
+	Go Top
+	lcdocno = ALLTRIM(bcapinvoicesub.docno)
+	Do While !Eof()
+		Wait Window Alltrim(Str(Recno())) Nowa
+		Do Insertdata
+		Skip
+	ENDDO
+
+*** Calculate stock amount ***
+ 
+	 lccommand = "insert into processstock (itemcode,processflag,flowstatus,processtype,processcase) "
+	 lccommand = lccommand + " select distinct itemcode , 1,0,0,0 from bcapinvoicesub where docno ='"+lcdocno+"'"
+	 result = SQLEXEC(dbconn,lccommand)
+	 IF result <0 	
+	 	DO ErrHand
+	 ELSE 
+	 	calitem = 1 
+	 	lnLoopCount = 0
+	 	DO WHILE  calitem >0 AND lnLoopcount <=10
+	 		lccommand = "select COUNT(itemcode) as itemcount from processstock where itemcode in (select itemcode from bcapinvoicesub where docno = ' "+lcdocno+"')"
+	 		*MESSAGEBOX(lccommand)
+	 		=SQLEXEC(dbconn,lccommand,'countprocessstock')
+	 		SELECT countprocessstock
+	 		calitem = countprocessstock.itemcount
+	 		WAIT WINDOW 'Check Calculate item Loop : '+ALLTRIM(STR(lnLoopcount))  TIMEOUT 0.5
+	 		lnLoopCount = lnLoopCount+1 
+	 	ENDDO 	
+	 	DO printbc WITH lcdocno 
+	 ENDIF 
+
+Endproc
+***************************************************

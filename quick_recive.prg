@@ -29,7 +29,7 @@ STORE 0 TO dbconn
 *A=sqlconnect(lcODBC)
 DO FORM login TO flageLogin 
 IF flageLogin  =1
-	DO FORM quick_recive NAME quickrv
+	DO FORM quick_buy NAME quickrv
 	READ EVENTS 
 ELSE 
 	MESSAGEBOX('Cannot connect to database ',16,'Error  connect data!')
