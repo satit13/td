@@ -246,8 +246,41 @@ Procedure trf_bcapinvoicesub
 	 		WAIT WINDOW 'Check Calculate item Loop : '+ALLTRIM(STR(lnLoopcount))  TIMEOUT 0.5
 	 		lnLoopCount = lnLoopCount+1 
 	 	ENDDO 	
-	 	DO printbc WITH lcdocno 
+	 	DO printbc_rv WITH lcdocno 
 	 ENDIF 
 
 Endproc
 ***************************************************
+
+
+PROCEDURE  printbc_rv
+PARAMETERS lcdocno 
+
+	MESSAGEBOX(lcdocno)
+
+	 lccommand = "select a.DocNo,a.DocDate,a.ItemCode,a.WHCode,a.ShelfCode,a.Qty,a.UnitCode,a.SUMOFCOST,a.creatorcode,"
+	 lccommand = lccommand + "b.Name1 as itemname,c.Name as personname,e.MyDescription,d.Name as projectname ,f.name as unitname,A.PROJECTCODE "
+	 lccommand = lccommand + "from bcapinvoicesub a left join bcitem b on a.ItemCode=b.Code "
+	 lccommand = lccommand + "left join BCSale c on a.creatorcode=c.code "
+	 lccommand = lccommand + "left join BCProject d on a.ProjectCode=d.Code "
+	 lccommand = lccommand + "left join bcapinvoice e on a.DocNo = e.DocNo " 
+	 lccommand = lccommand + "left join bcitemunit f on a.unitcode=f.code "
+	 lccommand = lccommand + "where a.docno = '"+lcdocno+"'"
+	 
+	 SET TALK OFF 
+	 SET CONSOLE OFF 
+	 result = SQLEXEC(dbconn,lccommand,"bcapinvoicesub_BC")
+	 IF result <0 
+	 	 DO errhand
+	 ELSE 
+	 	SELECT bcapinvoicesub_BC
+	 	IF MESSAGEBOX('Print out to printer ? ',36,'Output ')=6
+	 		REPORT FORM bcform_rv TO PRINTER PROMPT  
+		ELSE 
+			REPORT FORM bcform_rv PREVIEW 
+		ENDIF 
+	 	
+	 	
+	 ENDIF 
+
+ENDPROC 

@@ -1,0 +1,24 @@
+lbeforetaxamount  =99
+ltaxamount  =99
+ltotalamount =99
+lglformat  ='A00'
+lmydescription  =''
+lbilltype = 0
+
+select docno,taxno,docdate,taxtype,apcode,'' as departcode,0 as creditday,docdate as duedate, taxrate,0 as isconfirm,lmydescription  as mydescription,	lbilltype  as billtype,'' as billgroup,'' as contactcode, ;
+	SUM(amount) as sumofitemamount , 	'' as discountword,	0.00 as discountamount ,;
+	SUM(amount) as afterdiscount, lbeforetaxamount  as beforetaxamount,	ltaxamount  as taxamount ,	ltotalamount as totalamount,	0 as excepttaxamount ,;
+	0 as zerotaxamount,	ltotalamount  as netdebtamount,	0 as zerotaxamount,	ltotalamount as homeamount,	ltotalamount as billbalance,	lglformat  as glformat ,;
+	0 as glstartposting,	0 as grirbillstatus,	0 as ispostgl,	0 as iscancel,	0 as iscreditnote,	0 as isdebitnote, 1 as isprocessok, 1 as iscompletesave,0 as GLTransData ,;
+	creatorcode,createdatetime,lasteditorcode,lasteditdatet,	ltotalamount  as paybillamount ,'' as refdocno ; 
+from bcapinvoicesub ;
+group by docno,taxno,docdate,taxtype,apcode,taxrate,creatorcode,createdatetime,lasteditorcode,;
+lasteditdatet;
+	into CURSOR bcapinvoice
+
+
+**	0 as glstartposting,	0 as grirbillstatus,	0 as ispostgl,	0 as iscancel,	0 as iscreditnote,	0 as isdebitnote, 1 as isprocessok, 1 as iscompletesave,0 as GLTransData,;
+
+
+
+	*		creatorcode,createdatetime,lasteditorcode,lasteditdatet,	ltotalamount  as paybillamount ,refdocno ; 
