@@ -284,3 +284,20 @@ PARAMETERS lcdocno
 	 ENDIF 
 
 ENDPROC 
+***********************
+Procedure trf_bcinputtax
+	Select bcinputtax
+	result=SQLEXEC(dbconn,"SET IDENTITY_INSERT "+Alias()+" OFF")
+	Go Top
+	Do While !Eof()
+		Wait Window Alltrim(Str(Recno())) Nowa
+		Do Insertdata
+		Skip
+	Enddo
+Endproc
+*********************************
+
+
+PROCEDURE print_apinvoice 
+	
+ENDPROC 

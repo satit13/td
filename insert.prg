@@ -256,7 +256,7 @@ Endproc
 PROCEDURE  printbc_rv
 PARAMETERS lcdocno 
 
-	MESSAGEBOX(lcdocno)
+	MESSAGEBOX(lcdocno,64,'เลขที่เอกสารใหม่')
 
 	 lccommand = "select a.DocNo,a.DocDate,a.ItemCode,a.WHCode,a.ShelfCode,a.Qty,a.UnitCode,a.SUMOFCOST,a.creatorcode,"
 	 lccommand = lccommand + "b.Name1 as itemname,c.Name as personname,e.MyDescription,d.Name as projectname ,f.name as unitname,A.PROJECTCODE "
@@ -296,3 +296,8 @@ Procedure trf_bcinputtax
 	Enddo
 Endproc
 *********************************
+
+
+PROCEDURE print_apinvoice 
+	
+ENDPROC 
