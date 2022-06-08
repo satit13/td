@@ -259,14 +259,19 @@ PARAMETERS lcdocno
 	MESSAGEBOX(lcdocno,64,'เลขที่เอกสารใหม่')
 
 	 lccommand = "select a.DocNo,a.DocDate,a.ItemCode,a.WHCode,a.ShelfCode,a.Qty,a.UnitCode,a.SUMOFCOST,a.creatorcode,"
-	 lccommand = lccommand + "b.Name1 as itemname,c.Name as personname,e.MyDescription,d.Name as projectname ,f.name as unitname,A.PROJECTCODE "
+	 lccommand = lccommand + "b.Name1 as itemname,c.Name as personname,e.MyDescription,d.Name as projectname ,f.name as unitname,A.PROJECTCODE ,"
+	 lccommand = lccommand + " g.name1 as apname , e.apcode, case e.billtype when 0 then 'ซื้อเงินสด' when 1 then 'ซื้อเงินเชื่อ' end as billtype, "
+	 lccommand = lccommand + " case e.taxtype when 0 then 'แยกนอก' when 1 then 'รวมใน' when 2 then 'อัตราศูนย์' end as taxtypedesc,e.taxtype,e.taxrate,e.beforetaxamount,e.taxamount,e.totalamount ,e.taxno, "
+	 lccommand = lccommand + " e.creatorcode,e.createdatetime ,g.address,g.telephone,g.idcardno,g.taxno as ap_taxno,e.sumcashamount,e.sumbankamount,e.pettycashamount "
 	 lccommand = lccommand + "from bcapinvoicesub a left join bcitem b on a.ItemCode=b.Code "
 	 lccommand = lccommand + "left join BCSale c on a.creatorcode=c.code "
 	 lccommand = lccommand + "left join BCProject d on a.ProjectCode=d.Code "
 	 lccommand = lccommand + "left join bcapinvoice e on a.DocNo = e.DocNo " 
 	 lccommand = lccommand + "left join bcitemunit f on a.unitcode=f.code "
+	 lccommand = lccommand + "left join bcap g on a.apcode=g.code "
 	 lccommand = lccommand + "where a.docno = '"+lcdocno+"'"
 	 
+	 MESSAGEBOX(lccommand)
 	 SET TALK OFF 
 	 SET CONSOLE OFF 
 	 result = SQLEXEC(dbconn,lccommand,"bcapinvoicesub_BC")
@@ -279,8 +284,6 @@ PARAMETERS lcdocno
 		ELSE 
 			REPORT FORM bcform_rv PREVIEW 
 		ENDIF 
-	 	
-	 	
 	 ENDIF 
 
 ENDPROC 
@@ -296,8 +299,3 @@ Procedure trf_bcinputtax
 	Enddo
 Endproc
 *********************************
-
-
-PROCEDURE print_apinvoice 
-	
-ENDPROC 
