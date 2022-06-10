@@ -271,7 +271,7 @@ PARAMETERS lcdocno
 	 lccommand = lccommand + "left join bcap g on a.apcode=g.code "
 	 lccommand = lccommand + "where a.docno = '"+lcdocno+"'"
 	 
-	 MESSAGEBOX(lccommand)
+	* MESSAGEBOX(lccommand)
 	 SET TALK OFF 
 	 SET CONSOLE OFF 
 	 result = SQLEXEC(dbconn,lccommand,"bcapinvoicesub_BC")

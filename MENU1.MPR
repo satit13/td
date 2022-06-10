@@ -1,12 +1,12 @@
 *       *********************************************************
 *       *                                                         
-*       * 18/06/2020             MENU1.MPR              00:00:07  
+*       * 8/6/2022             MENU1.MPR              12:16:19  
 *       *                                                         
 *       *********************************************************
 *       *                                                         
 *       * Author's Name                                           
 *       *                                                         
-*       * Copyright (C) 2020 Company Name                         
+*       * Copyright (C) 2022 Company Name                         
 *       * Address                                                 
 *       * City,     Zip                                           
 *       *                                                         
@@ -26,63 +26,63 @@
 SET SYSMENU TO
 SET SYSMENU AUTOMATIC
 
-DEFINE PAD _5sm0005qp OF _MSYSMENU PROMPT "File" COLOR SCHEME 3 ;
+DEFINE PAD _6cp0qax1s OF _MSYSMENU PROMPT "File" COLOR SCHEME 3 ;
 	KEY ALT+F, ""
-DEFINE PAD _5sm0005qq OF _MSYSMENU PROMPT "Buyer" COLOR SCHEME 3 ;
+DEFINE PAD _6cp0qax1t OF _MSYSMENU PROMPT "Buyer" COLOR SCHEME 3 ;
 	KEY ALT+B, ""
-DEFINE PAD _5sm0005qr OF _MSYSMENU PROMPT "Inventory" COLOR SCHEME 3 ;
+DEFINE PAD _6cp0qax1u OF _MSYSMENU PROMPT "Inventory" COLOR SCHEME 3 ;
 	KEY ALT+I, ""
-DEFINE PAD _5sm0005qs OF _MSYSMENU PROMPT "Cheq" COLOR SCHEME 3 ;
+DEFINE PAD _6cp0qax1v OF _MSYSMENU PROMPT "Cheq" COLOR SCHEME 3 ;
 	KEY ALT+C, ""
-ON PAD _5sm0005qp OF _MSYSMENU ACTIVATE POPUP file
-ON PAD _5sm0005qq OF _MSYSMENU ACTIVATE POPUP buyer
-ON PAD _5sm0005qr OF _MSYSMENU ACTIVATE POPUP inventory
-ON PAD _5sm0005qs OF _MSYSMENU ACTIVATE POPUP cheq
+ON PAD _6cp0qax1s OF _MSYSMENU ACTIVATE POPUP file
+ON PAD _6cp0qax1t OF _MSYSMENU ACTIVATE POPUP buyer
+ON PAD _6cp0qax1u OF _MSYSMENU ACTIVATE POPUP inventory
+ON PAD _6cp0qax1v OF _MSYSMENU ACTIVATE POPUP cheq
 
 DEFINE POPUP file MARGIN RELATIVE SHADOW COLOR SCHEME 4
 DEFINE BAR 1 OF file PROMPT "Login"
 DEFINE BAR 2 OF file PROMPT "Config"
 DEFINE BAR 3 OF file PROMPT "Exit"
 ON SELECTION BAR 1 OF file ;
-	DO _5sm0005qt ;
+	DO _6cp0qax1w ;
 	IN LOCFILE("BERK\MENU1" ,"MPX;MPR|FXP;PRG" ,"WHERE is MENU1?")
 ON SELECTION BAR 2 OF file ;
-	DO _5sm0005qu ;
+	DO _6cp0qax1x ;
 	IN LOCFILE("BERK\MENU1" ,"MPX;MPR|FXP;PRG" ,"WHERE is MENU1?")
 ON SELECTION BAR 3 OF file ;
-	DO _5sm0005qv ;
+	DO _6cp0qax1y ;
 	IN LOCFILE("BERK\MENU1" ,"MPX;MPR|FXP;PRG" ,"WHERE is MENU1?")
 
 DEFINE POPUP buyer MARGIN RELATIVE SHADOW COLOR SCHEME 4
 DEFINE BAR 1 OF buyer PROMPT "ChangeApCode"
 DEFINE BAR 2 OF buyer PROMPT "ChangeApCode_Other"
 ON SELECTION BAR 1 OF buyer ;
-	DO _5sm0005qw ;
+	DO _6cp0qax1z ;
 	IN LOCFILE("BERK\MENU1" ,"MPX;MPR|FXP;PRG" ,"WHERE is MENU1?")
 ON SELECTION BAR 2 OF buyer ;
-	DO _5sm0005qx ;
+	DO _6cp0qax20 ;
 	IN LOCFILE("BERK\MENU1" ,"MPX;MPR|FXP;PRG" ,"WHERE is MENU1?")
 
 DEFINE POPUP inventory MARGIN RELATIVE SHADOW COLOR SCHEME 4
 DEFINE BAR 1 OF inventory PROMPT "Adj_InspectStatus"
 DEFINE BAR 2 OF inventory PROMPT "Stk_Issue"
 ON SELECTION BAR 1 OF inventory ;
-	DO _5sm0005qy ;
+	DO _6cp0qax21 ;
 	IN LOCFILE("BERK\MENU1" ,"MPX;MPR|FXP;PRG" ,"WHERE is MENU1?")
 ON SELECTION BAR 2 OF inventory ;
-	DO _5sm0005qz ;
+	DO _6cp0qax22 ;
 	IN LOCFILE("BERK\MENU1" ,"MPX;MPR|FXP;PRG" ,"WHERE is MENU1?")
 
 DEFINE POPUP cheq MARGIN RELATIVE SHADOW COLOR SCHEME 4
 DEFINE BAR 1 OF cheq PROMPT "PrintChqout"
 ON SELECTION BAR 1 OF cheq ;
-	DO _5sm0005r0 ;
+	DO _6cp0qax23 ;
 	IN LOCFILE("BERK\MENU1" ,"MPX;MPR|FXP;PRG" ,"WHERE is MENU1?")
 
 
 *       *********************************************************
 *       *                                                         
-*       * _5SM0005QT  ON SELECTION BAR 1 OF POPUP file            
+*       * _6CP0QAX1W  ON SELECTION BAR 1 OF POPUP file            
 *       *                                                         
 *       * Procedure Origin:                                       
 *       *                                                         
@@ -93,14 +93,14 @@ ON SELECTION BAR 1 OF cheq ;
 *       *                                                         
 *       *********************************************************
 *
-PROCEDURE _5sm0005qt
+PROCEDURE _6cp0qax1w
 DO FORM login
 
 
 
 *       *********************************************************
 *       *                                                         
-*       * _5SM0005QU  ON SELECTION BAR 2 OF POPUP file            
+*       * _6CP0QAX1X  ON SELECTION BAR 2 OF POPUP file            
 *       *                                                         
 *       * Procedure Origin:                                       
 *       *                                                         
@@ -111,14 +111,14 @@ DO FORM login
 *       *                                                         
 *       *********************************************************
 *
-PROCEDURE _5sm0005qu
+PROCEDURE _6cp0qax1x
 DO form config
 
 
 
 *       *********************************************************
 *       *                                                         
-*       * _5SM0005QV  ON SELECTION BAR 3 OF POPUP file            
+*       * _6CP0QAX1Y  ON SELECTION BAR 3 OF POPUP file            
 *       *                                                         
 *       * Procedure Origin:                                       
 *       *                                                         
@@ -129,7 +129,7 @@ DO form config
 *       *                                                         
 *       *********************************************************
 *
-PROCEDURE _5sm0005qv
+PROCEDURE _6cp0qax1y
 SET SYSMENU TO DEFAULT
 CLEAR EVENTS
 
@@ -137,7 +137,7 @@ CLEAR EVENTS
 
 *       *********************************************************
 *       *                                                         
-*       * _5SM0005QW  ON SELECTION BAR 1 OF POPUP buyer           
+*       * _6CP0QAX1Z  ON SELECTION BAR 1 OF POPUP buyer           
 *       *                                                         
 *       * Procedure Origin:                                       
 *       *                                                         
@@ -148,13 +148,13 @@ CLEAR EVENTS
 *       *                                                         
 *       *********************************************************
 *
-PROCEDURE _5sm0005qw
+PROCEDURE _6cp0qax1z
 DO FORM apchange
 
 
 *       *********************************************************
 *       *                                                         
-*       * _5SM0005QX  ON SELECTION BAR 2 OF POPUP buyer           
+*       * _6CP0QAX20  ON SELECTION BAR 2 OF POPUP buyer           
 *       *                                                         
 *       * Procedure Origin:                                       
 *       *                                                         
@@ -165,14 +165,14 @@ DO FORM apchange
 *       *                                                         
 *       *********************************************************
 *
-PROCEDURE _5sm0005qx
+PROCEDURE _6cp0qax20
 DO FORM apchangeother
 
 
 
 *       *********************************************************
 *       *                                                         
-*       * _5SM0005QY  ON SELECTION BAR 1 OF POPUP inventory       
+*       * _6CP0QAX21  ON SELECTION BAR 1 OF POPUP inventory       
 *       *                                                         
 *       * Procedure Origin:                                       
 *       *                                                         
@@ -183,7 +183,7 @@ DO FORM apchangeother
 *       *                                                         
 *       *********************************************************
 *
-PROCEDURE _5sm0005qy
+PROCEDURE _6cp0qax21
 lccommand = "exec usp_fix_inspectsub_adjstatus"
 result = SQLEXEC(dbconn,lccommand,'fixresult')
 IF result < 0
@@ -196,7 +196,7 @@ ENDIF
 
 *       *********************************************************
 *       *                                                         
-*       * _5SM0005QZ  ON SELECTION BAR 2 OF POPUP inventory       
+*       * _6CP0QAX22  ON SELECTION BAR 2 OF POPUP inventory       
 *       *                                                         
 *       * Procedure Origin:                                       
 *       *                                                         
@@ -207,7 +207,7 @@ ENDIF
 *       *                                                         
 *       *********************************************************
 *
-PROCEDURE _5sm0005qz
+PROCEDURE _6cp0qax22
 DO FORM berk NAME BERK
 
 
@@ -215,7 +215,7 @@ DO FORM berk NAME BERK
 
 *       *********************************************************
 *       *                                                         
-*       * _5SM0005R0  ON SELECTION BAR 1 OF POPUP cheq            
+*       * _6CP0QAX23  ON SELECTION BAR 1 OF POPUP cheq            
 *       *                                                         
 *       * Procedure Origin:                                       
 *       *                                                         
@@ -226,6 +226,6 @@ DO FORM berk NAME BERK
 *       *                                                         
 *       *********************************************************
 *
-PROCEDURE _5sm0005r0
+PROCEDURE _6cp0qax23
 DO FORM chqoutprint
 
