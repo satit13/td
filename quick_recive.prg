@@ -8,7 +8,9 @@
  SET CPDIALOG OFF
  SET DELETED ON
  SET MULTILOCKS ON
- ON ERROR 
+*On Error Do ErrHandle With Error( ), Message( ), Program( ), Lineno( )
+ON ERROR 
+
  SET CONSOLE ON
  LCLASTSETTALK = SET('TALK')
  SET TALK OFF
@@ -86,3 +88,20 @@ PROCEDURE errhand
    = AERROR(aErrorArray)  && Data from most recent error
    MESSAGEBOX(aErrorArray(n))
 ENDPROC 
+
+
+Procedure ErrHandle(tnerror, tcMessage, tcProg, tnLineNo)
+	    Local lcError
+	    TEXT to m.lcError textmerge noshow
+	Error No: << m.tnerror >>. Message: << m.tcMessage >>
+	Source: << m.tcProg >> at line << m.tnLineNo >>
+	    ENDTEXT
+	    Messagebox(m.lcError, 0+4096, "Error", 5000)
+	    Local loForm
+	  *  loForm = _vfp.ActiveForm
+*!*		    loForm = _screen.ActiveForm
+*!*		    
+*!*		    If !Isnull(m.loForm)
+*!*		        m.loForm.Release()
+*!*		    Endif		
+Endproc
